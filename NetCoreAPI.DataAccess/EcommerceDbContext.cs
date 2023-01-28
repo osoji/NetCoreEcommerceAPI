@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using NetCoreAPI.Entities;
+using System.Diagnostics;
 
 namespace NetCoreAPI.DataAccess
 {
@@ -74,11 +75,15 @@ namespace NetCoreAPI.DataAccess
 
                 entity.HasOne(x => x.Category)
                 .WithMany(x => x.ProductCategories)
-                .HasForeignKey(x => x.CategoryId);
+                .HasForeignKey(x => x.CategoryId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
 
                 entity.HasOne(x => x.Product)
                 .WithMany(x => x.ProductCategories)
-                .HasForeignKey(x => x.ProductId);
+                .HasForeignKey(x => x.ProductId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
             });
 
             //ProductImage
@@ -89,13 +94,13 @@ namespace NetCoreAPI.DataAccess
                 entity.Property(x => x.ImagePath).IsRequired()
                 .HasMaxLength(255);
                 entity.Property(x => x.Decription).IsRequired(false)
-                .HasMaxLength(1500); ;
+                .HasMaxLength(1500);
                 entity.HasOne(x => x.Product)
                 .WithMany(x => x.ProductImages)
-                .HasForeignKey(x => x.ProductId);
+                .HasForeignKey(x => x.ProductId)
+                .IsRequired()
+                .OnDelete(DeleteBehavior.Restrict);
             });
-
-
 
             OnModelCreatingPartial(modelBuilder);
         }

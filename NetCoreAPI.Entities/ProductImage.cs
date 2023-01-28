@@ -7,7 +7,7 @@
         public string ImageName { get; set; }
         public string ImagePath { get; set; }
         public string Decription { get; set; }
-        
+        public Product Product { get; set; }
     }
 }
 

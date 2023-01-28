@@ -15,6 +15,7 @@
         public Category ParentCategory { get; set; }
 
         public ICollection<Category> ChildrenCategories { get; set; } = new List<Category>();
+        public ICollection<ProductCategory> ProductCategories { get; set; }
     }
 }
 
