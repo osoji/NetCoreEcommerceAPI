@@ -85,6 +85,7 @@ namespace NetCoreAPI.DataAccess
             modelBuilder.Entity<ProductImage>(entity =>
             {
                 entity.HasKey(x => x.ProductImageId);
+                entity.Property(x => x.ImageName).IsRequired();
                 entity.Property(x => x.ImagePath).IsRequired()
                 .HasMaxLength(255);
                 entity.Property(x => x.Decription).IsRequired(false)
